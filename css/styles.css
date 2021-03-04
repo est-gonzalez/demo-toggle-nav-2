@@ -12,8 +12,9 @@ body {
 }
 
 header {
-    padding: 2%;
+    padding: 1rem;
     background-color: #fff;
+    position: relative;
 }
 
 header a {
@@ -53,11 +54,62 @@ header nav {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.7s ease-in-out;
+    /* Add an overlay effect when opened */
+    position: absolute;
+    top: 95px;
+    left: 0;
+    background-color: #fff;
+    width: 100%;
+    z-index: 1;
 }
 
 /* Step 3: Create a special class that will show the nav. This class name will only exit in the CSS, not the markup - the javascript will do that for us. We'll add that functionality in the main.js file */
 .show-nav {
     max-height: 15rem;
+}
+
+/* *************** section ***************** */
+section {
+    padding: 3.125rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+section p {
+    color: #d5e294;
+    border-bottom: 2px solid #d5e294;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    font-size: 1.777rem;
+}
+
+section h2 {
+    color: #fff;
+    font-size: 3.157rem;
+    margin-bottom: 3.125rem;
+}
+
+.gallery img {
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.gallery .thumbnail {
+    position: relative;
+}
+
+.gallery span {
+    background-color: #87a6ab;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #fff;
+    /* Position the span over the top of the image */
+    position: absolute;
+    /* The top, right, bottom, left values will position the item in relation to the screen. UNLESS the parent container (.thumbnail) has a position of relative */
+    right: -10px;
+    top: -20px;
+    box-shadow: 2px 2px 8px #000;
 }
 
 /* Step 4: add a media query and show the nav by default (hide the hamburger button and style the nav horizontally) */
@@ -70,6 +122,9 @@ header nav {
     header nav {
         max-height: 5rem;
         overflow: visible;
+        /* Change the positionback to static (default) and width auto is the content width */
+        position: static;
+        width: auto;
     }
 
     /* change the layout of the nav items */
@@ -77,5 +132,17 @@ header nav {
     header {
         display: flex;
         justify-content: space-between;
+    }
+}
+
+@media only screen and (min-width: 60em) {
+    .gallery {
+        display: flex;
+        flex-flow: wrap;
+        justify-content: space-between;
+    }
+
+    .thumbnail {
+        flex: 0 0 48%;
     }
 }
